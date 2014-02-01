@@ -58,7 +58,7 @@ def main():
   parser.add_option("-q", "--qrels",
                   dest="qrels", help="Path to the qrels file", metavar="FILE")
   parser.add_option("-t", "--text",
-                  dest="text", help="Path to the textual reference file (outputs of test_collection_to_text.rb)", metavar="FILE")
+                  dest="text", help="Path to the textual reference file (outputs of test_collection_to_text.py)", metavar="FILE")
 
   (options, args) = parser.parse_args()
 
@@ -77,6 +77,8 @@ if __name__ == "__main__":
 
   ref        = load_ref(options.text)
   hash_qrels = rel_docs(options.qrels)
+
+  # Evaluate only the content of the 100 first documents.
   trec_run   = TrecRun(options.run,100)
 
   for topic,trecretdocs in trec_run.items():
@@ -90,6 +92,6 @@ if __name__ == "__main__":
     voc_docs = unique([t[0] for t in estimate_docs])
     voc_ref  = unique([t[0] for t in estimate_ref])
 
-    set(voc_docs).
+    # set(voc_docs).
 
     break
